@@ -7,14 +7,16 @@ javascript: (() => {
     const aTagList = Array.from(document.getElementsByTagName('a'));
     aTagList.forEach(aTag => {
         const targetAttr = aTag.getAttribute('target');
+        const hrefAttr = aTag.getAttribute('href');
         let message = '';
         let color = '';
 
+        if (hrefAttr && inWhitelist(hrefAttr)) {
+            return;
+        }
+
         if (null == targetAttr || '_self' == targetAttr) {
-            const hrefAttr = aTag.getAttribute('href');
-
-
-            if (/^https?:\/\//.test(hrefAttr) && !inWhitelist(hrefAttr)) {
+            if (/^https?:\/\//.test(hrefAttr)) {
                 message = 'http(s):// から始まる URL に target="_blank" がありません', 'color: orange;';
                 color = 'orange';
             }
