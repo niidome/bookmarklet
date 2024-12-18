@@ -9,7 +9,7 @@ javascript: (() => {
             console.log('alt=', imgTag.getAttribute('alt').trim());
         }
 
-        console.groupCollapsed('↳画像タグ');
+        console.groupCollapsed(' ↳ 画像タグ');
         console.log(imgTag);
         console.groupEnd();
     });
